@@ -135,4 +135,12 @@ Nella progettazione OOP una relazione fondamentale è quella dell'ereditarietà.
 ### **Principio di sostituibilità**
 Data una dichiarazione di una variabile o di un parametro il cui tipo è dichiarato come x, una qualunque istanza di una classe discendente può essere usato come valore effettivo senza violare la semantica del suo tipo e del suo uso. In altre parole, l'istanza di un discendente può essere sostituito all'istanza di un suo ascendente. Tale principio è detto _polimorfismo di inclusione_. Una conseguenza del principio di sostituibilità è che una sottoclasse non può rimuovere o rinunciare a proprietà o metodi della superclasse, altrimenti una istanza della sottoclasse non sarà sostituibile in una situazione in cui si dichiara l'uso di oggetti della superclasse.  
 In effetti, preservando la visibilità degli attributi e dei metodi ereditati (come accade nelle tre forme viste precedentemente) si garantisce che gli oggetti della sottoclassse offrano quantomeno gli stessi servizi delle istanze della superclasse (anche se viene svolto @Override).   
-In definitiva i tre metodi visti prima sono compatibili con il principio di sostituibilità.
+In definitiva i tre metodi visti prima sono compatibili con il principio di sostituibilità.  
+
+
+### **Generalizzazioni**
+Le tre tipologie di ereditarietà preceenti possono essere messe in atto attraverso relazioni di generaizzazioni: questo perchè ogni istanza di una classe derivata da una classe base va considerata come istanza della classe base.  
+
+### **Ereditarietà per implementazione**
+La sottoclasse utilizza l'implementazione della superclasse (tra cui definizioni di attributi e metodi) per implementare l'astrazione associata e comporta, tra l'altro la modifica della visibilità delle caratteristiche ereditate. Questa tipologia non è compatibile con il polimorfismo di inclusione: pertanto se una classe Y eredita l'implementazione della classe X, non si può riutilizzare su istanze di Y di tutto il codice in cui si dichiarano e utilizzano dati di classe X, in quanto non vale il principio di sostituibilità.  
+

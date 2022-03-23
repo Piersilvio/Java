@@ -51,5 +51,22 @@ visibilità nome : type [molteplicità] [= val][{proprietà}]
     * _frozen_: Attributo non modificabile.  
 
 ### **I Metodi**
-continuare...
-
+Esiste una distinzione fra un metodo e l'operazione:  
+L'operazione è un servizio che può essere richiesto alla classe o alla sua istanza mentre un metodo è l'implementazione del servizio richiesto dall'operazione. La definizione di default come segue:  
+```
+visibilià nome [(lista par.)][:tipo di valore di ritorno] [{proprietà}]
+```
+1. le tipologie di visibilità sono le stesse degli attributi.
+2. nella lista di parametri devono essere specificate nel modo seguente. Per direzione intendiamo come il parametro deve essere passato:
+    * _in_: parametro in input non modificabile
+    * _out_: parametro in output 
+```
+[direzione] par1:typ1 [= val], ..., [direzione] parN:typN [= val]
+```
+3. se si tratta di un metodo che restituisce un "qualcosa", allora bisogna specificarne il tipo di questo "qualcosa".
+4. le proprietà possono essere di tipo:  
+    * _isQuery_: l'esecuzione del metodo è priva di side effecting.
+    * _leaf_: l'operazione non gode di estensione di ereditarietà (_@Overriding_).
+    * _sequential_: i "chiamanti" del metodo devono coordinarsi in modo sequenziale per utilizzarlo.
+    * _guarded_: un solo "chiamante" alla volta e la coordinazione viene gestita dalla classe stessa del metodo.
+    * _concurrent_: per i "chiamanti" multipli.

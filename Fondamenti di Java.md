@@ -1,8 +1,8 @@
-# Fondamenti di Java 
+# Fondamenti di Java - Parte 1
 
 Vedremo nella prima parte di questo documento il paradigma ad oggetti dal punto di vista teorico introducendole in notazioni UML. Per ogni paragrafo a partire dagli oggetti, verranno messe all'interno di una cartella di questa repository la notazione UML corrispondente numerandole secondo l'ordine di questo file.
 
-### **Paradigma ad oggetti**
+## **Paradigma ad oggetti**
 La progettazione OOP nasce come soluzione alla programmazione imperativa, data da un difetto naturale:
 Le variabili globali sono potenzialmente accessibili da ogni parte di programmi. La ragione è che nessun modulo che accede ad essa può essere sviluppato o compreso in modo indipendente da altri moduli che possono accedervi alla stessa medesima variabile.  
 La soluzione a questo problema è quella di utilizzare il principio di _information hiding_ permettendo di incapsulare in un modulo ogni variabile globale insieme ad un gruppo di operazioni autorizzate ad accedervi, in modo che gli altri moduli possano accedervi in modo indiretto mediante le operazioni. Ed è qui che nasce il paradigma ad oggetto.     
@@ -83,5 +83,56 @@ le proprietà _sequential_, _guarded_ e _concurrent_ sono per classi attive in c
 ### **Classi Template**
 Una classe "parametrizzata definisce una famiglia di classi parametriche cui il tipo è specificato solo in fase di inizializzazione dell'oggetto della classe. Non è possibile usare direttamente una classe Template: è necessario prima specificare il tipo, ossia l'operatore di istanziazione (un esempio è la classe _ArrayList_). L'istanziazione può esssere fatta in due modi:  
 1. in modo esplicito, esplicitando la classe col suo tipo.
-2. in modo implicito, rappresentando il suo tipo attraverso una dipendenza steriotipata <<_bind_>>
+2. in modo implicito, rappresentando il suo tipo attraverso una dipendenza steriotipata <<_bind_>>  
 
+
+### **Molteplicità di classe**
+indica il numero massimo di istanza che può avere la classe stessa.  
+
+
+### **Responsabilità di classe**
+All'interno del modello UML, è necessario stabilire delle responsabilità (generalmente, è la specifica algebrica) da assegnare ad ogni classe ed è possibile farlo in due modi:  
+1. specificando dopo la raccolta di attributi e operazioni la sua responsabilità.
+2. utilizzando un commento.
+
+
+### **Identificazioni**
+Al fine di rendere il sistema riutilizzabile, l'individuazione delle classi deve essere condotto in modo preciso. E' necessario seguire, dunque, una metodologia ben definita:  
+1. Identificare gli elementi che gli utenti usano per descrivere il problema.
+2. Per ogni astrazione individuata è necessario identificare un insieme di responsabilità.
+3. Fornire ad ogni classe gli attributi e le operazioni di cui ha bisogno per eseguire tali responsabilità.  
+
+L'identificazione, quindi, dipende dalla realtà che si sta affrontando e sia dalla necessità di individuare il giusto bilanciamento dei compiti da assegnare, al fine di rendere il software riutilizzabile. Esisto quindi tre diverse identificazioni per ogni classe:  
+1. Classi _entità_
+2. classi di _controllo_
+3. Classi di _confine_    
+
+Queste tre categorie permettono il giusto partizionamento del sistema in tre componenti diverse, ossia _dominio_ (contiene oggetti e classi della realtà), _controllo_ (contiene le classi e oggetti che incapsulano i dati attraverso la vista) e _vista_ (che contiene gli oggetti e classi con cui interfacciare l'utente col software).  
+
+
+### **Relazione "Istance-of"**
+E' un modo per identificare un oggetto attraverso la sua classe. E' possibile farlo con un rettangolo richiamando l'eventuale package, la sua classe e seguita dai due punti col nome dell'oggetto, oppure con un rettangolo apparte che identifica l'oggetto collegandolo con una freccia trattegiata alla sua classe mediante lo steriotipo "Istance-of".  
+
+
+### **Ereditarietà**
+Nella progettazione OOP una relazione fondamentale è quella dell'ereditarietà. Una classe è considerata come un repertorio di conoscenza a partire dal quale è possibile definire altre classi più specifiche che che completano la conoscenza della loro classe madre. Una _sottoclasse_, quindi, è una specializzazione della descrizione di una classe madre, detta anche _superclasse_ dalla quale essa mutua (almeno una parte) gli attributi e le operazioni. Abbiamo tre tipi di ereditarietà:  
+1. _Per estensione_:  
+    La sottoclasse introduce delle proprietà non presenti nello stato della superclasse e non applicabili alle istanze della superclasse. La visibilità di attributi e operazioni ereditate dalla superclasse non consentono l'@Override (la modifica).  
+
+2. _Per variazione funzionale_:  
+    Consente la ridefinizione di alcune operazioni ereditate dalla superclasse per l'insieme di oggetti descritti nella sottoclasse. Detto anche @Overriding, la ridefinizione riguarda solo l'implementazione del metodo e non l'operazione di per sé (si parla di @Overloading se vengono ridefiniti solo i dati e i parametri usando lo stesso nome e lo stesso metodo dell'operazione della superclasse).   
+    E' possibile osservare che la ridefinizione non è incrementale, ossia che i cambiamenti al metodo della superclasse ereditato devono anche essere riportate in modo manuale al metodo della sottoclase che usa @Override, e che l'operazione di @Override viene fortemente sconsigliata: è sempre meglio ereditare i metodi im modo completo senza "sovrascrittura.  
+    Per risolvere questo problema, si possono adottare delgi accorgimenti nella realizzazione dei metodi per i quali si riconosce già in fase di progetto un possibile cambiamento. Dunque, il metodo della sottoclasse deve prendere al suo interno l'invocazione del metodo della superclasse e nel caso la risposta risulta positiva, aggiungere ulteriori controlli.  
+    ```
+    super.op(...); //per richiamare il metodo della superclasse da una sottoclasse
+    ```  
+    Il metodo di @Override è valido a metodi generici, esclusi i metodi di accesso (costruttori e distruttori).  
+    
+3. _Per restrizione_:   
+    Le istanze della sottoclasse soddisfano i vincoli che non sono necessariamente soddisfatti da istanze della superclasse. Tale tipo non consente la modifica della visibilità degli attributi e i metodi ereditati dalla superclasse.  
+
+
+### **Principio di sostituibilità**
+Data una dichiarazione di una variabile o di un parametro il cui tipo è dichiarato come x, una qualunque istanza di una classe discendente può essere usato come valore effettivo senza violare la semantica del suo tipo e del suo uso. In altre parole, l'istanza di un discendente può essere sostituito all'istanza di un suo ascendente. Tale principio è detto _polimorfismo di inclusione_. Una conseguenza del principio di sostituibilità è che una sottoclasse non può rimuovere o rinunciare a proprietà o metodi della superclasse, altrimenti una istanza della sottoclasse non sarà sostituibile in una situazione in cui si dichiara l'uso di oggetti della superclasse.  
+In effetti, preservando la visibilità degli attributi e dei metodi ereditati (come accade nelle tre forme viste precedentemente) si garantisce che gli oggetti della sottoclassse offrano quantomeno gli stessi servizi delle istanze della superclasse (anche se viene svolto @Override).   
+In definitiva i tre metodi visti prima sono compatibili con il principio di sostituibilità.

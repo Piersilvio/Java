@@ -1,6 +1,6 @@
 # Fondamenti di Java 
 
-Vedremo nella prima parte di questo documento il paradigma ad oggetti dal punto di vista teorico introducendo alcune notazioni UML:
+Vedremo nella prima parte di questo documento il paradigma ad oggetti dal punto di vista teorico introducendole in notazioni UML. Per ogni paragrafo a partire dagli oggetti, verranno messe all'interno di una cartella di questa repository la notazione UML corrispondente numerandole secondo l'ordine di questo file.
 
 ### **Paradigma ad oggetti**
 La progettazione OOP nasce come soluzione alla programmazione imperativa, data da un difetto naturale:
@@ -16,6 +16,7 @@ Sono entità astratte che incapsulano uno stato e un comportamento:
   
 Ogni oggetto, a sua volta, è composto da una sua identita, ossia il PID.  
   
+
 ### **Le classi**
 Una classe è una descrizione di una famiglia di oggetti (Dette anche _istanze_) che condividono lo stesso stato (_attributi_) e comportamento (_operazioni_). Un oggetto è difficile che esista se non esiste la sua classe di appartenenza. In generale, le classi sono composto da due componenti principali:
 1. _Componente statica_:  
@@ -30,6 +31,7 @@ Una classe è una descrizione di una famiglia di oggetti (Dette anche _istanze_)
 Per quanto riguarda i _metodi di acceso_, essi si differenziano in _metodi di istanza_ (che operano solo sul singolo attributo specificando l'istanza) e in _metodi di classe_ (che operano solo sul singolo attributo specificando il nome della classe).
 
 In UML, oggetti e classi saranno rappresentati con rettangoli con la sola differenza che un oggetto deve avere la prima lettera minuscola e la classe la lettera maiuscola.  
+
 
 ### **Gli Attributi**
 Gli attributi rappresentano lo stato di una classe di oggetti. La definizione di default come segue:  
@@ -50,6 +52,7 @@ visibilità nome : type [molteplicità] [= val][{proprietà}]
     * _addOnly_: L'attributo può assumere o rimosso un valore e non è modificabile (per associazioni > 1).
     * _frozen_: Attributo non modificabile.  
 
+
 ### **I Metodi**
 Esiste una distinzione fra un metodo e l'operazione:  
 L'operazione è un servizio che può essere richiesto alla classe o alla sua istanza mentre un metodo è l'implementazione del servizio richiesto dall'operazione. La definizione di default come segue:  
@@ -59,7 +62,8 @@ visibilià nome [(lista par.)][:tipo di valore di ritorno] [{proprietà}]
 1. le tipologie di visibilità sono le stesse degli attributi.
 2. nella lista di parametri devono essere specificate nel modo seguente. Per direzione intendiamo come il parametro deve essere passato:
     * _in_: parametro in input non modificabile
-    * _out_: parametro in output 
+    * _out_: parametro in output modificabile
+    * _inout_: parametro in input modificabile
 ```
 [direzione] par1:typ1 [= val], ..., [direzione] parN:typN [= val]
 ```
@@ -69,4 +73,15 @@ visibilià nome [(lista par.)][:tipo di valore di ritorno] [{proprietà}]
     * _leaf_: l'operazione non gode di estensione di ereditarietà (_@Overriding_).
     * _sequential_: i "chiamanti" del metodo devono coordinarsi in modo sequenziale per utilizzarlo.
     * _guarded_: un solo "chiamante" alla volta e la coordinazione viene gestita dalla classe stessa del metodo.
-    * _concurrent_: per i "chiamanti" multipli.
+    * _concurrent_: per i "chiamanti" multipli.  
+
+
+### **Classi Attive**
+le proprietà _sequential_, _guarded_ e _concurrent_ sono per classi attive in cui gli oggetti sono "attivi". Un oggetto è ritenuto attivo se esso ha un thread e può far partire un thread concorrente. Una classe attiva è simile ad una classe con la sola eccezione che le sue istanze rappresentano gli elementi il cui comportamento è concorrente con il resto delle istanze create.  
+
+
+### **Classi Template**
+Una classe "parametrizzata definisce una famiglia di classi parametriche cui il tipo è specificato solo in fase di inizializzazione dell'oggetto della classe. Non è possibile usare direttamente una classe Template: è necessario prima specificare il tipo, ossia l'operatore di istanziazione (un esempio è la classe _ArrayList_). L'istanziazione può esssere fatta in due modi:  
+1. in modo esplicito, esplicitando la classe col suo tipo.
+2. in modo implicito, rappresentando il suo tipo attraverso una dipendenza steriotipata <<_bind_>>
+

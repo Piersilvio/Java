@@ -70,7 +70,7 @@ I "letterali" sono scritture di valore di un tipo specificato e sono definiti pe
 5. per caratteri e stringhe: sono costanti che possono contenere qualsiasi carattere Unicode a 16 bit e racchiudo con singoli apici un carattere e con doppi apici una stringa.  
 
 
-### **Il tipo Array**
+### **L'oggetto Array**
 E' un oggetto che contiene un numero finito di oggetti (o tipi)dello stesso tipo. La lunghezza dell'array è definita al momento della sua inizializzazione. Ogni oggetto di tipo array è detto elemento e permette l'accesso diretto a tale elemento:
 ```
 int[] a;                //dichiarazione
@@ -79,8 +79,6 @@ int[] = {10, 34, 15};   //inizializzazione in modo esplicito
 int[][] a;              //dichiarazione di una matrice
 ```
 
-
-### **Metodi di Array**
 Metodo | Scopo
 ---- | ----
 ```arraycopy(object src, int srcPos, object dest, int destPos, int lenght);``` | copiare gli elementi da una certa posizione da un array X e incollarli in un array Y, specificando il numero di elementi da copiare
@@ -163,3 +161,65 @@ for(int var : object)
 
 
 ### **L'oggetto Numbers**
+Il linguaggio mette a disposizione delle classi che rappresentano i tipi primitivi numerici come ```Byte, short, integer``` ecc. Il compilatore converte in modo automatico i tipi primitivi e le classi attraverso la tecnica _boxing/unboxing_. L'utilizzo di questa classe è molto consigliata in quanto:
+1. l'argomento di un metodo deve essere un oggetto e non un tipo primitivo
+2. Utilizzare le costanti ```static``` nella clase
+3. per conversioni fra tipi (ad esempio da String in numeri o fra i numeri).  
+
+
+metodo | scopo
+------ | -----
+```type typeValue()``` | Convertire il valore in un tipo primitivo
+```int compareTo(type anotherType)``` | Converte il tipo Number con l'argomento. Restituisce >0 se più grande, = 0 se sono uguali e <0 se più piccolo
+```boolean equals(Object obj)``` | per confrontare il tipo Number con il parametro  
+
+Metodi per la conversione: 
+
+
+metodo | scopo
+------ | ----
+```static integer decode(String s)``` | converte la stringa in integer
+```static int parseInt(String s)``` | converte una stringa in int
+```static int parseInt(String s, int radix)``` | converte una stringa in int, (radix=sistema di numerazione 10, 2, 8, 16)
+```String toString()``` | restituisce la stringa che rappresenta questo
+numero
+```static String toString(int i)``` | : restituisce la stringa che rappresenta il numero i
+```static Integer valueOf(int i)``` |  restituisce l’Integer che rappresenta il valore primitivo i
+```static Integer valueOf(String s)``` | simile a parseInt ma restituisce un Integer
+
+Poiché ogni numero può essere convertito in String si possono utilizzare per la stampa dei numeri direttamente il metodo ```System.out.println(String s);``` oppure il metodo ```System.out.format(String s, Object... args)``` che specifica come gli oggetti devono essere stampati.  
+
+
+### **L'oggetto math**
+La classe Math fornisce strumenti più avanzati per le operazioni matematiche come ad esempio costanti matematiche, funzioni elementari e operazioni di base:   
+metodo | scopo
+------ | -----
+```Math.E(), Math.PI()``` | costante di nepero e pigreco
+```Math.abs()``` | restituisce il valore assoluto
+```double ceil(double d)``` | restituisce l’intero più grande che è più piccolo o uguale a d
+```double floor(double d)``` | restituisce l’intero più grande che è più piccolo o uguale a d
+```double rint(double d)``` | restituisce l’intero più vicino a d
+```double exp(double d)``` | restituisce e^d
+```double log(double d)``` | restituisce ln(d)
+```double pow(double base, double exponent)``` | restituisce base^exponent
+```double sqrt(double d)``` | restituisce radice quadrata di d
+```double Math.random()``` | restituisce un numero nell'intervallo [0, 1). Inoltre si può moltiplicare per uno scalare per avere un certo range random di numeri e viene utilizzata solo importando ```java.util.Random```  
+
+
+### **L'oggetto Character**
+metodo | scopo
+------ | -----
+```boolean isLetter(char ch)``` | determina se il carattere è una lettera o una cifra
+```boolean isWhitespace(char ch``` | determina se il carattere è un white space (spazio, accapo, tabulazione)
+```boolean isUpperCase(char ch)``` | determina se il caratter è in maiuscolo
+```boolean isLowerCase(char ch) ``` | determina se il carattere è minuscolo
+```char toUpperCase(char ch)``` | determina la maiuscola del carattere
+```char toLowerCase(char ch)``` | determina la minuscola del carattere
+```toString(char ch)``` | restituisce una stringa che rappresenta un singolo carattere  
+
+
+### **L'oggetto String**
+
+
+
+

@@ -181,8 +181,7 @@ metodo | scopo
 ```static integer decode(String s)``` | converte la stringa in integer
 ```static int parseInt(String s)``` | converte una stringa in int
 ```static int parseInt(String s, int radix)``` | converte una stringa in int, (radix=sistema di numerazione 10, 2, 8, 16)
-```String toString()``` | restituisce la stringa che rappresenta questo
-numero
+```String toString()``` | restituisce la stringa che rappresenta questo numero
 ```static String toString(int i)``` | : restituisce la stringa che rappresenta il numero i
 ```static Integer valueOf(int i)``` |  restituisce l’Integer che rappresenta il valore primitivo i
 ```static Integer valueOf(String s)``` | simile a parseInt ma restituisce un Integer

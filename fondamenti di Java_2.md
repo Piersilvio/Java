@@ -294,7 +294,7 @@ In generale, i nomi dei metodi devono essere espressi come un verbo e minuscolo.
 Una classe può avere più metodi con lo stesso nome purché abbiano una lista differente di parametri e i metodi con lo stesso nome devono restituire lo stesso tipo di valore.    
 
 
-### **I costruttori
+### **I costruttori**
 Sono dei metodi che servono ad inizializzare gli oggetti di una classe. Hanno lo stesso nome della classe e non restituiscono alcun valore.
 ```
 public Bycycle(int startSpeed, int startGear)

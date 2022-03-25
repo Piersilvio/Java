@@ -218,7 +218,128 @@ metodo | scopo
 
 
 ### **L'oggetto String**
+La classe String rappresenta una stringa di caratteri: un istanza è immutabile, cioè il suo valore non può essere modificato dopo la sua creazione. Per farsi che questo accada, si utilizzi la classe ```StringBuilder o StringBuffer```.  
+metodo | scopo
+------ | -----
+```charAt(int i)``` | restituisce il carattere all'iesima posizione
+```length()``` | restituisce la lunghezza della stringa
+```contains(CharSequence s)``` | restituisce true se contiene la sottostringa s
+```indexOf(String s)``` | restituisce l’indice dal quale inizia la sottostringa s, -1 se non esiste la sottostringa
+```indexOf(String s, int i)``` | inizia la ricerca della sottostringa a partire dall’i-esimo carattere
+```replace(CharSequence s1, CharSequence s2)``` | sostituisce la sequenza s1 con s2
+```replaceAll(String regex, String r)``` | sostituisce tutte le sequenze che corrispondono alla regex con r
+```matches(String regex)``` | restituisce true se la stringa corrisponde alla regex
+```split(String regex)``` | restituisce un array di String dividendo dove avviene il matching con la regex
+```equals(Object o)``` | confronta due stringhe
+```substring(int b)``` | genera una sottostringa a partire da b
+```trim()``` | elimina gli spazi all'inizio e alla fine della stringa  
 
 
+### **Le classi**
+```
+class MyClass
+{
+    /*
+        Stato della classe (attributi)
+    */
+
+    /*
+        Inizializzazione di un oggetto di questa classe (costruttori)
+    */
+
+    /*
+        Operazioni della classe (metodi)
+    */
+}
+```
+```
+[visibilità] class [nome] extends [superclasse] implements [interfaccia1]...
+{
+    //body della classe
+}
+```
+1. la visibilità sono le stesse modalità con cui la classe è visibile alle altre classi.
+2. la superclass è la classe da cui eredità.
+3. interface se implementa o meno delle interfacce.  
+
+Variabile all'interno di una classe: 
+1. Attributi: varibili visibili in tutta la classe.
+2. Attributi locali: visibili solo nel metodo in cui sono utilizzate.
+3. Perimetro: passate quando si chiama un metodo.  
+
+
+### **Gli attributi**
+Dichiarazione degli attributi:
+```
+public class Bicycle
+{
+    private int gear = 1;
+    private int speed;
+}
+```
+
+
+### **I metodi**
+Dichiarazione di metodi:
+```
+[visibilità] [tipo] nome(parametri, ... )
+{
+    //body della classe
+}
+``` 
+In generale, i nomi dei metodi devono essere espressi come un verbo e minuscolo. Inoltre, ogni metodo può avere 0 o n-parametri e possono essere di ogni tipo (compreso oggetto). I parametri devono avere nomi differenti dagli attributi della classe, eccetto il caso in cui è possibile assegnare ad un parametro lo stesso nome dell'attributo con il riferimento ```this```.  
+
+
+### **Overloading dei metodi**
+Una classe può avere più metodi con lo stesso nome purché abbiano una lista differente di parametri e i metodi con lo stesso nome devono restituire lo stesso tipo di valore.    
+
+
+### **I costruttori
+Sono dei metodi che servono ad inizializzare gli oggetti di una classe. Hanno lo stesso nome della classe e non restituiscono alcun valore.
+```
+public Bycycle(int startSpeed, int startGear)
+{
+    gear = startGaer;
+    speed = startSpeed;
+}
+
+//per creare un oggetto di tipo Bicycle devo chiamare il suo costruttore
+Bicycle miaBici = new Bicycle(0, 3);
+```  
+Una classe, inoltre, può avere più di un costruttore: non è possibile dichiarare due costruttori che hanno lo stesso tipo e numero di parametri.
+```
+public Bicycle()
+{
+    gear = 1;
+    speed = 0;
+}
+```
+Una classe può non avere costruttori: in questo caso l'oggetto creato eredita il costruttore senza parametri della sua superclasse e se la superclasse non ha un costruttore senza parametri, allora eredita quello di object. Anche i costruttori sono dotati di una visibilità.  
+
+
+### **Gli oggetti**
+Gli oggeti vengono creati utilizzando l'istruzione ```new``` e invocando un costruttore della classe a cui deve appartenere l'oggetto. E' possibile accedere agli attributi e a i metodi dell'oggetto attraverso la notazione "oggetto.metodo()".  
+
+
+### **Riferimento This**
+Permette di accedere ai costruttori utilizzando lo stesso nome degli attributi della classe.
+```
+public class Bicycle 
+{
+    private int gear;
+    private int speed;
+
+    public Bicycle(int startSpeed, int startGear) {
+        this.gear = startGear;
+        this.speed = startSpeed;
+    }
+
+    public Bicycle() 
+    {
+        this(3, 0);
+    }
+
+}
+```
 
 

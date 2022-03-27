@@ -120,7 +120,7 @@ Nella progettazione OOP una relazione fondamentale è quella dell'ereditarietà.
     La sottoclasse introduce delle proprietà non presenti nello stato della superclasse e non applicabili alle istanze della superclasse. La visibilità di attributi e operazioni ereditate dalla superclasse non consentono l'@Override (la modifica).  
 
 2. _Per variazione funzionale_:  
-    Consente la ridefinizione di alcune operazioni ereditate dalla superclasse per l'insieme di oggetti descritti nella sottoclasse. Detto anche @Overriding, la ridefinizione riguarda solo l'implementazione del metodo e non l'operazione di per sé (si parla di @Overloading se vengono ridefiniti solo i dati e i parametri usando lo stesso nome e lo stesso metodo dell'operazione della superclasse).   
+    Consente la ridefinizione di alcune operazioni ereditate dalla superclasse per l'insieme di oggetti descritti nella sottoclasse. Detto anche @Overriding, la ridefinizione riguarda solo l'implementazione del metodo e non l'operazione di per sé.   
     E' possibile osservare che la ridefinizione non è incrementale, ossia che i cambiamenti al metodo della superclasse ereditato devono anche essere riportate in modo manuale al metodo della sottoclase che usa @Override, e che l'operazione di @Override viene fortemente sconsigliata: è sempre meglio ereditare i metodi im modo completo senza "sovrascrittura.  
     Per risolvere questo problema, si possono adottare delgi accorgimenti nella realizzazione dei metodi per i quali si riconosce già in fase di progetto un possibile cambiamento. Dunque, il metodo della sottoclasse deve prendere al suo interno l'invocazione del metodo della superclasse e nel caso la risposta risulta positiva, aggiungere ulteriori controlli.  
     ```

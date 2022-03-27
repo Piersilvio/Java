@@ -2,7 +2,7 @@
 
 Vedremo nella prima parte di questo documento il paradigma ad oggetti dal punto di vista teorico introducendole in notazioni UML. Per ogni paragrafo a partire dagli oggetti, verranno messe all'interno di una cartella di questa repository la notazione UML corrispondente numerandole secondo l'ordine di questo file.
 
-## **Paradigma ad oggetti**
+### **Paradigma ad oggetti**
 La progettazione OOP nasce come soluzione alla programmazione imperativa, data da un difetto naturale:
 Le variabili globali sono potenzialmente accessibili da ogni parte di programmi. La ragione è che nessun modulo che accede ad essa può essere sviluppato o compreso in modo indipendente da altri moduli che possono accedervi alla stessa medesima variabile.  
 La soluzione a questo problema è quella di utilizzare il principio di _information hiding_ permettendo di incapsulare in un modulo ogni variabile globale insieme ad un gruppo di operazioni autorizzate ad accedervi, in modo che gli altri moduli possano accedervi in modo indiretto mediante le operazioni. Ed è qui che nasce il paradigma ad oggetto.     

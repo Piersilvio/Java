@@ -340,6 +340,211 @@ public class Bicycle
     }
 
 }
+```  
+
+
+#### **Parola-chiave Static**
+Con il modificatore static posso definire variabili (attributi) e metodi a livello di classe. Una variabile di tipo static è la stessa per tutte le istanze di quella classe e i metodi static possono essere chiamati anche senza creare un istanza di quella classe.
+```
+public class Person {
+    static int numbOfPersons=0;
+    private String name;
+    private String surname;
+
+    public Person(String name, String surname) {
+        this.name=name;
+        this.surname=surname;
+        ++numbOfPersons;
+    }
+}
+
+Person p1=new Person(‘’Pippo’’, ‘’Rossi’’);
+Person p2=new Person(‘’Topolino’’, ‘’Bianchi’’);
+System.out.println(Person.numbOfPersons);
+```  
+
+
+### **Le costanti**
+E' possibile definire attributi costanti attraverso il modificatore ```final```:
+```
+private final X = 4;                        //visibile solo nella classe
+public final X = 4;                         // visibile anche alle altre classi
+public static final double PI = 3.14;       //visibile alle altre classi in modo static
+```  
+
+
+### **Classi innestate**
+E’ possibile definire una classe all’interno di un’altra classe. In particolare, è possibile utilizzarle quando:
+1. Quando la inner class è utile solo alla outer class.
+2. Quando una classe B deve accedere a risorse private di A, quindi incapsulando B in A in modo da mantere le risorse private.
+3. Rendere più leggibile il codice.
+```
+class outerClass{
+    ...
+    static class staticNestedClass{     //non ha accesso alle risorse di outerClass
+        ....
+    }
+    class innerClass{                   //ha accesso alle risorse di outerClass anche se private
+        ...
+    }
+}
 ```
 
 
+### **Tipi enumerativi**
+Permettono di definire dei tipi che possono assumere solo un set predefinito di costanti. Quando si crea un tipo enum JAVA crea automaticamente una classe di tipo enum che mette a disposizione dei metodi e permette di definire anche dei costruttori e nuovi metodi.
+```
+public enum Day {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+    THURSDAY, FRIDAY, SATURDAY
+}
+
+for (Day d : Day.values()) {    //Day.values() restituisce tutti i valori che può assumere Day
+    System.out.println(d);
+}
+```
+
+
+### **Interfacce**
+Le interfacce permettono di definire il funzionamento di una classe e permettono di definire quali metodi deve avere una classe per aderire all'interfaccia. Contengono solo la descrizione dei metodi e non la loro implementazione e permettono di definire delle classi che hanno stesse funzionalità ma ognuna le implementa in modo differente.  
+Dichiarazione di un'interfaccia:
+```
+public interface <name> extends <interface1>, <interface2>, <interface3> {
+    // constant declarations
+    // method signatures
+    void methodA(int i, double x);
+    int methodB(String s);
+}
+```
+Implementazione di un'interfaccia:
+```
+public class <name> implements <interface> {
+    //implementazione di tutti i metodi definiti in <interface>
+}
+```  
+
+
+### **Ereditarietà**
+In Java le classi possono ereditare da altre classi tutti gli attributi e i metodi della superclasse. In Java tutte le classi ereditano dalla classe Object. In java:
+```
+public class ScientificCalculator extends Calculator 
+{
+    public double tan(double x) {
+        return Math.tan(x);
+    }
+    public double sin(double x) {
+        return Math.sin(x);
+    }
+}
+```  
+
+
+### **Overriding**
+Una classe può ridefinire un metodo della sua superclasse: in questo caso il metodo della superclasse viene nascosto e viene invocato quello della classe.
+```
+public class ClassA {
+    public void printMe() {
+    System.out.println(‘’Io sono A’’);
+    }
+
+    public void sayHello() {
+    System.out.println(‘’Hello!’’);
+    }
+}
+
+public class ClassB extends ClassA {
+    public void printMe() {
+        System.out.println(‘’Io sono B’’);
+    }
+}
+```
+
+
+### **Polimorfismo**
+Le sottoclassi possono riscrivere alcuni comportamenti della superclasse pur avendo ancora delle caratteristiche in comune. La capacità di ogni sottoclasse di poter ridefinire i comportamenti della superclasse è detta polimorfismo.
+```
+ClassA a=new ClassA();
+ClassA b=new ClassB();
+a.sayHello();
+b.sayHello();
+a.printMe();
+b.printMe();
+```
+
+
+### **Accesso alla superclasse**
+E' possibile accedere ad attributi e metodi della superclasse attraverso il riferimento ```super```:
+```
+//per invocare i costruttori della superclasse
+super();
+super(lista par.);
+
+//per invocare i metodi della classe padre
+super.methodSuper(...);
+```  
+esempio:
+```
+public class ClassA {
+    public void printMe() {
+        System.out.println(‘’Io sono A’’);
+    }
+    public void sayHello() {
+        System.out.println(‘’Hello!’’);
+    }
+}
+
+public class ClassB extends ClassA {
+    public void printMe() {
+        super.printMe();
+        System.out.println(‘’Io sono B’’);
+    }
+}
+```
+
+
+### **Classi astrate**
+Le classi astratte hanno dei metodi astratti, ovvero non forniscono un implementazione per alcuni metodi. In tal caso, non è possbile istanziare oggetti di classi astratte e possono, inoltre, esere ereditate: in questo caso la sottoclasse deve fornire un implementazione dei metodi astratti:
+```
+public abstract class GraphicObject{
+    //declare field
+    //declare nonabstract methods
+    abstract void draw();
+}
+```  
+Nb. le classi astratte possono avere anche dei metodi implementati!.  
+
+
+### **Differenze fra interfacce e classi astratte**
+Le classi astratte sono simili alle interfacce in quanto non possono essere istanziate e contengono metodi senza implementazione. Tuttavia, nelle classi astratte è possibile dichiarare attributi che non siano ```static``` e ```final``` e, inoltre, è possibile dichiarare metodi con un implementazione. Invece, nelle interfacce tutti gli attributi devono essere di tipo ```static``` e ```final``` e tutti i metodi di tipo ```public```.    
+
+Nb. è possibile estendere una sola classe (anche se astratta), ma è possibile implementare numerose interfacce.   
+
+Uilizza le classi astratte se:
+1. Vuoi condividere del codice (metodi) tra un insieme di classi che sono tra di loro strettamente correlate.
+2. Ti aspetti che le classi che andranno ad estendere la classe astratta hanno molti metodi o attributi in comune.
+3. Vuoi utilizzare attributi non static o final. Questo ti permetti di avere dei metodi che modificano gli attributi degli oggetti  ai quali appartengono.  
+
+Utilizza le interfacce se:
+1. Le classi che devono implementare l’interfaccia non sono strettamente correlate.
+2. Vuoi specificare il comportamento di una particolare struttura dati senza entrare nei dettagli implementativi.
+3. Hai bisogno di ricorrere all’ereditarietà multipla.
+```
+class Circle extends GraphicObject {
+    void draw() {
+        ...
+    }
+    void resize() {
+        ...
+    }
+}
+
+class Rectangle extends GraphicObject {
+    void draw() {
+        ...
+    }
+    void resize() {
+        ...
+    }
+}
+```  
+Nb. Una classe astratta può implementare anche una o più interfacce.

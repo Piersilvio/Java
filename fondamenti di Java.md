@@ -343,7 +343,7 @@ public class Bicycle
 ```  
 
 
-#### **Parola-chiave Static**
+### **Parola-chiave Static**
 Con il modificatore static posso definire variabili (attributi) e metodi a livello di classe. Una variabile di tipo static è la stessa per tutte le istanze di quella classe e i metodi static possono essere chiamati anche senza creare un istanza di quella classe.
 ```
 public class Person {

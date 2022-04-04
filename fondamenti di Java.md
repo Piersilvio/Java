@@ -502,7 +502,7 @@ public class ClassB extends ClassA {
 ```
 
 
-### **Classi astrate**
+### **Classi astratte**
 Le classi astratte hanno dei metodi astratti, ovvero non forniscono un implementazione per alcuni metodi. In tal caso, non è possbile istanziare oggetti di classi astratte e possono, inoltre, esere ereditate: in questo caso la sottoclasse deve fornire un implementazione dei metodi astratti:
 ```
 public abstract class GraphicObject{

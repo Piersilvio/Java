@@ -1,4 +1,4 @@
-# Fondamenti di Java - Parte 2
+# Fondamenti di Java
 
 In questa sezione ci limiteremo ad applicare i concetti teorici della OOP attraverso Java.
 

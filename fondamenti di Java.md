@@ -2,7 +2,7 @@
 
 In questa sezione ci limiteremo ad applicare i concetti teorici della OOP attraverso Java.
 
-## **Cos'è Java**
+### **Cos'è Java**
 Java è un linguaggio OOP indipendente dalla piattaforma di esecuzione. E' un linguaggio descritto da gerarchie e dipendenze fra classi. Il codice compilato, detto anche _bytecode_può essere eseguito su qualunque JVM per diverse piattaforme.  
 
 ### **Package**

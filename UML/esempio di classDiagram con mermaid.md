@@ -1,7 +1,7 @@
 
 
 ```mermaid
-ClassDiagram
-class Scacchiera
-Scacchiera -- Cella
+ClassDiagram,
+class Scacchiera,
+Scacchiera -- Cella,
 ```

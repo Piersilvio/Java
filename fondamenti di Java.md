@@ -548,3 +548,105 @@ class Rectangle extends GraphicObject {
 }
 ```  
 Nb. Una classe astratta può implementare anche una o più interfacce.
+  
+
+### **Le Collection e le strutture dati**
+Una collection è un oggetto che racchiude più oggetti. E' utilizzata per memorizzazre, recuperare ed elaborare gruppi di oggetti. Java mette a disposizione un framework per la gestione delle collection composto da:
+1. interfacce: sono l'astrazione di ogni tipologia di collection
+2. implementazione: sono le classi che implementano le interfacce
+3. algoritmi: una serie di algoritmi poliformi che lavorano sulle interfacce
+Le interfacce permettono di lavorare in maniera indipendente dalla loro effettiva implementazione.
+
+
+
+### **Le interfacce Collection**
+```mermaid
+graph
+collection --> set
+collection --> list
+collection --> queue
+collection --> deque
+set --> sortedList
+Map --> sortedMap
+```
+Tutte le interfacce collection sono generiche  
+```
+public interface Collection<E>
+```
+Quando si crea un'istanza di una classe che implementa Collection bisogna specificare il tipo E dell'insieme di oggetti. Dalla mappa precedente:
+1. _Collection_: è la radice della gerarchia e per questo la più generica, rappresenta semplicemente un contenitore di oggetti senza alcun particolare vincolo
+2. _Set_: rappresenta un contenitore di tipo insieme e non può contenere duplicati
+3. _List_: una lista di oggetti, dove ogni oggetto avra una posizione e ammette duplicati
+4. _Queue_: è una coda in cui gli elementi hanno un ordino di inseriemento e recupero di tipo FIFO. E' possibile anche implementare _code con priorità_ se specificata la funzione di ordinamento.
+5. _Deque_: dimile ad una coda ma permette l'accesso ad entrambe le estremità della coda
+6. _Map_: permette di collegare dei valori a delle chiavi, cui non possono essere duplicate all'interno della stessa Map
+7. _SortedSet_: un set in cui gli elementi sono ordinati in modo crescente
+8. SortedMap: una Map in cui le chiavi sono ordinate in modo crescente  
+Tutte le interfacce che ereditano da Collection ereditano i suoi metodi primitivi per gestire i gruppi di oggetti  
+
+
+Metodo | Scopo
+---- | ----
+```int size()``` | restituisce il numero di oggetti
+```boolean isEmpty()``` | true se è vuota
+```boolean contains(Object el)``` | true se la collection contiene "el"
+```boolean add(E el)``` | aggiunge un oggetto di tipo E
+```boolean remove(Object el)``` | rimuove un oggetto
+```iterator<E> iterator()``` | restituisce un oggetto Iterator che permette di iterare su tutti gli elementi  
+  
+Metodi che agiscono sull'intera collection:
+Metodo | Scopo
+---- | ----
+```boolean containsAll(Collection<?> c``` | restituisce true se la collection contiene tutti gli elementi in c
+```boolean isEmpty()``` | true se è vuota
+```boolean addAll(Collection<? extends E> c)``` | aggiunge tutti gli elementi in c alla collection
+```boolean removeAll(Collection<?> c)``` | rimuove tutti gli elementi di c dalla Collection
+```boolean retainAll(Collection<?> c)``` | mantiene nella collection solo gli elementi presenti in c
+```void clear()``` | elimina tutti gli elementi della collection  
+  
+
+### **Iterare sulla collection**
+```
+//metodo for-each
+for (Object o : collection)
+    System.out.println(o);
+
+//metodo iterator
+Iterator<?> it = collection.iterator();
+while(it.hasNext())
+    System.out.println();
+
+//l'interfaccia iterator
+public interface Iterator<E>{
+    boolean hasNext(); //true se la collection ha il successivo elemento
+    E next();          //restituisce il prossimo elemento
+    void remove();     //rimuove l'elemento corrente
+}  
+```
+Nb: Nel caso sia necessario rimuovere degli elementi dalla collection è preferibile utilizzzare un iterator e non il metodo for-each!  
+
+
+### **L'interfaccia Set**
+Set è un contenitore di tipo insieme che non può contenere duplicati. Esistono tre tipologie di implementazioni:
+1. _HashSet_: un set implementato da una tabella hash non mantiene l’ordine di inserimento degli elementi; è l’implementazione più efficiente
+2. _TreeSet_: un set implementato con una struttura ad albero che mantiene l’ordine di inserimento, è meno efficiente
+3. _LinkedHashSet_: un set implementato con una tabella hash e puntatore che mantiene l’ordine di inserimento degli elementi  
+L'uguaglianza degli oggetti è definita dai metodi ```equals``` e ```HashCode``` della classe Object (è possibile inoltre effettuare @Override per ridefinire il concetto di uguaglianza).   
+Possiamo crare un Set a partire dagli elementi di una collection c:
+```
+Set<Type> s = new LinkedHashSet<Type> (c);
+```
+Operazioni sugli insiemi:
+```
+//Unione
+Set<Type> union = new HashSet<Type>(s1);
+union.addAll(s2);
+
+//Intersezione
+Set<Type> intersection = new HashSet<Type>(s1);
+intersection.retainAll(s2);
+
+//Differenza
+Set<Type> difference = new HashSet<Type>(s1);
+difference.removeAll(s2);
+```

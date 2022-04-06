@@ -650,3 +650,14 @@ intersection.retainAll(s2);
 Set<Type> difference = new HashSet<Type>(s1);
 difference.removeAll(s2);
 ```
+
+
+### **L'interfaccia List**
+Una List è una sequenza di elementi aventi una posizione: all'interno della lista vengono ammessi duplicati. Oltre i metodi previsti da Collection, esistono metodi per:
+1. accedere agli elementi tramite la loro posizione
+2. cercare un oggetto e ottenere la posizione in cui si trova l'elemento
+3. iterare sulla sequenza
+4. creare delle sottoliste e avere una visione parziale della lista
+Esistono due diverse tipologie di implementazione:
+1. _ArrayList()_: più utilizzata e più performante
+2. _LinkedList()_: con doppi puntatori

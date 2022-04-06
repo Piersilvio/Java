@@ -657,7 +657,24 @@ Una List è una sequenza di elementi aventi una posizione: all'interno della lis
 1. accedere agli elementi tramite la loro posizione
 2. cercare un oggetto e ottenere la posizione in cui si trova l'elemento
 3. iterare sulla sequenza
-4. creare delle sottoliste e avere una visione parziale della lista
+4. creare delle sottoliste e avere una visione parziale della lista  
+
 Esistono due diverse tipologie di implementazione:
 1. _ArrayList()_: più utilizzata e più performante
 2. _LinkedList()_: con doppi puntatori
+
+Metodi che che sfruttano l'accesso alla posizione   
+Metodo | Scopo
+---- | ----
+```git(int i)``` | restituisce l'oggetto alla posizione i
+```set(int i, E el)``` | inserisce l'elemento alla posizione i
+```remove(int i)``` | rimuove l'elemento i-esimo
+```add(int i, E el)``` | aggiunge l'elemento in posizione i
+```addAll(int i, Collection c)``` | aggiunge tutti gli elementi in c a partire dalla posizione i  
+
+Metodi per la ricerca degli elementi
+Metodo | Scopo
+---- | ----
+```indexOf(Object o)``` | restituisce la posizione in cui si trova l'oggetto o, altrimenti -1
+```lastindexOf(Object o)``` | restituisce l'ultima posizione in cui si trova l'oggetto o, altrimenti -1
+
